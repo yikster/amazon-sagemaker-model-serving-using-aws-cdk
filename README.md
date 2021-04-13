@@ -244,7 +244,31 @@ cat ~/.aws/credentials
 ```
 6. Open config/app-config.json 
 6.1 Change Project account=current account number, profile=default
+7. Follow Section **How to set up** , **How to provision** , **How to test**
+8. Create CICD
+8.1 Create codecommit repository
+```bash
+aws codecommit create-repository --repository-name $PROJECT_PREFIX
+```
+9. Deploy CICD
+9.2 Edit config/app-config.json
+```json
+        "CICDPipeline": {
+            "Name": "CICDPipelineStack",
 
+            "RepositoryName": "tctest4",
+            "BranchName": "main"
+        },
+```
+9.3 sh script/deploy_stacks.sh
+9.4 push codes to codecommit
+```bash
+git remote add codecommit https://git-codecommit.us-east-1.amazonaws.com/v1/repos/tctest4
+git status
+git add config/app-config.json 
+git commit -m "Update CICD Pipeline"
+git push codecommit main
+```
 ### **How to set up**
 
 First of all, enter your project basic configuration in the follwoing document: ***config/app-config.json***. Fill in your project's "Name", "Stage", "Account", "Region", "Profile(AWS CLI Credentials)" in "Project" according to your environments.
