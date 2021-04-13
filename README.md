@@ -221,6 +221,30 @@ First of all, AWS Account and IAM User is required. And then the following must 
 
 Please refer to the kind guide in [CDK Workshop](https://cdkworkshop.com/15-prerequisites.html).
 
+## Build Deployment Environment
+1. Region = us-east-1
+2. Go to Cloud9
+  2.1. Create Cloud9 Environment > us-east-1a > m5.large > EBS 100GB
+3. Go to CloudFormation : Check Status
+4. Click "Open IDE" > Click "bash - terminal" on the bottom
+5. run scripts
+```bash
+git clone https://github.com/yikster/amazon-sagemaker-model-serving-using-aws-cdk 
+cd amazon-sagemaker-model-serving-using-aws-cdk
+aws s3 cp s3://textclassificationdemo-model-archiving-ap-northeast-2-51959/models/model-a/model/model.tar.gz models/model-a/src/
+cd models/model-a/src
+tar zxvf model.tar.gz
+cd ../ 
+cp -r . ../../model-b/src/
+
+sudo yum install -y jq
+
+aws sts get-caller-identity --output text | gawk '{print $2 }' 
+cat ~/.aws/credentials
+```
+6. Open config/app-config.json 
+6.1 Change Project account=current account number, profile=default
+
 ### **How to set up**
 
 First of all, enter your project basic configuration in the follwoing document: ***config/app-config.json***. Fill in your project's "Name", "Stage", "Account", "Region", "Profile(AWS CLI Credentials)" in "Project" according to your environments.
