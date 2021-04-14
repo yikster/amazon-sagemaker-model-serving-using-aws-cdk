@@ -224,10 +224,15 @@ Please refer to the kind guide in [CDK Workshop](https://cdkworkshop.com/15-prer
 ## Build Deployment Environment
 1. Region = us-east-1
 2. Go to Cloud9
+
   2.1. Create Cloud9 Environment > us-east-1a > m5.large > EBS 100GB
+  
 3. Go to CloudFormation : Check Status
-4. Click "Open IDE" > Click "bash - terminal" on the bottom
+
+4. Go to Cloud 9, Click "Open IDE" > Click "bash - terminal" on the bottom
+
 5. run scripts
+
 ```bash
 git clone https://github.com/yikster/amazon-sagemaker-model-serving-using-aws-cdk 
 cd amazon-sagemaker-model-serving-using-aws-cdk
@@ -243,31 +248,42 @@ aws sts get-caller-identity --output text | gawk '{print $2 }'
 cat ~/.aws/credentials
 ```
 6. Open config/app-config.json 
+
 6.1 Change Project account=current account number, profile=default
+
 7. Follow Section **How to set up** , **How to provision** , **How to test**
+
 8. Create CICD
+
 8.1 Create codecommit repository
+
 ```bash
-aws codecommit create-repository --repository-name $PROJECT_PREFIX
+aws codecommit create-repository --repository-name [New Repository Name - replace to yours]
 ```
+
 9. Deploy CICD
+
 9.2 Edit config/app-config.json
+
 ```json
         "CICDPipeline": {
             "Name": "CICDPipelineStack",
 
-            "RepositoryName": "tctest4",
+            "RepositoryName": "[Created Repository Name_8.1 - replace to yours]",
             "BranchName": "main"
         },
 ```
+
 9.3 sh script/deploy_stacks.sh
+
 9.4 push codes to codecommit
+
 ```bash
-git remote add codecommit https://git-codecommit.us-east-1.amazonaws.com/v1/repos/tctest4
+git remote add alias-remote https://git-codecommit.us-east-1.amazonaws.com/v1/repos/[Created Repository Name_8.1 - replace to yours]
 git status
 git add config/app-config.json 
 git commit -m "Update CICD Pipeline"
-git push codecommit main
+git push alias-remote main
 ```
 ### **How to set up**
 
