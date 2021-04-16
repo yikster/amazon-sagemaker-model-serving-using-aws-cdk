@@ -35,7 +35,7 @@
                     "VariantName": "Model-A",
                     "VariantWeight": 1,
                     "InstanceCount": 1,
-                    "InstanceType": "ml.c5.xlarge",
+                    "InstanceType": "ml.t2.medium",
 
                     "AutoScalingEnable": false,
                     "AutoScalingMinCapacity": 2,
@@ -50,7 +50,7 @@
                     "VariantName": "Model-B",
                     "VariantWeight": 1,
                     "InstanceCount": 1,
-                    "InstanceType": "ml.m4.xlarge",
+                    "InstanceType": "ml.t2.medium",
 
                     "AutoScalingEnable": false,
                     "AutoScalingMinCapacity": 1,
