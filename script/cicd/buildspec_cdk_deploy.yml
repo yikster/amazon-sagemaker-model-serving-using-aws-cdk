@@ -7,6 +7,7 @@ phases:
     commands:
       - pwd
       - ls -l
+      - npm install cdk
       - sh script/cicd/setup_initial.sh
 
   build:
