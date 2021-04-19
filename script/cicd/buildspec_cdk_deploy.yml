@@ -7,7 +7,6 @@ phases:
     commands:
       - pwd
       - ls -l
-      - npm install -g aws-cdk cdk@1.99.0
       - sh script/cicd/setup_initial.sh
 
   build:
