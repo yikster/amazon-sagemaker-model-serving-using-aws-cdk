@@ -3,11 +3,11 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 14
+      nodejs: 12
     commands:
       - pwd
       - ls -l
-      - npm install cdk
+      - npm install -g aws-cdk
       - sh script/cicd/setup_initial.sh
 
   build:
